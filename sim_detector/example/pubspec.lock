@@ -126,10 +126,10 @@ packages:
   sim_detector_platform_interface:
     dependency: transitive
     description:
-      path: "../../sim_detector_platform_interface"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: sim_detector_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   sky_engine:
     dependency: transitive
     description: flutter
