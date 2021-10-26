@@ -1,6 +1,6 @@
 name: sim_detector
 description: Uses a listener to notify the host app about sim subscription change.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/afmjoaa/sim_detector.git
 
 environment:

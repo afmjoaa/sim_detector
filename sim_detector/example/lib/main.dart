@@ -3,7 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
 import 'dart:io';
 
-import 'package:sim_detector/sim_detector_plugin.dart';
+import 'package:sim_detector/sim_detector.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,11 +59,23 @@ class _MyAppState extends State<MyApp> {
 
   void listenForSimSubscriptionIdChange() {
     SimSubscriptionIdStreamSubscription = simSubscriptionChangeStream?.listen((params) {
-      print('Current Subscription ID: $params');
+      List<int> subscribedSimSubscriptionIds = _getSubscribedSimSubscriptionIds(params as SubscribedSimInformation);
+      print('Current sim subscription IDs: $subscribedSimSubscriptionIds');
       setState(() {
-        lastSubscriptionId = params.toString();
+        lastSubscriptionId = subscribedSimSubscriptionIds.toString();
       });
     });
+  }
+
+  List<int> _getSubscribedSimSubscriptionIds (SubscribedSimInformation subscriptionInformation) {
+    List<int> subscribedSimSubscriptionIdList = [];
+    if (subscriptionInformation.simSlotZeroSubscriptionId != null) {
+      subscribedSimSubscriptionIdList.add(subscriptionInformation.simSlotZeroSubscriptionId!);
+    }
+    if (subscriptionInformation.simSlotOneSubscriptionId != null) {
+      subscribedSimSubscriptionIdList.add(subscriptionInformation.simSlotOneSubscriptionId!);
+    }
+    return subscribedSimSubscriptionIdList;
   }
 
   @override
